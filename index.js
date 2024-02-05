@@ -7,12 +7,13 @@ const bodyParser = require("body-parser");
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
-
 const port = 3300;
 
+app.use(bodyParser.json());
+
+
 app.get('/', (req, res) => {
-  res.json("coor backend");
+  res.send("coor backend");
 });
 
 function extractInitializationState(scriptContent) {
@@ -78,6 +79,6 @@ app.get('/getcoordinates', (req, res) => {
 
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
